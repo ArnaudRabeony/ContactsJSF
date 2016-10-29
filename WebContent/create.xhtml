@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+<ui:include src="header.xhtml"/>
+  		<h:outputText value="#{msg['create.title']}"/><br></br>
+  		<hr></hr>
+  		<hr></hr>
+  		<h:outputLink value="createContact.jsf" >
+	  		<h:outputText value="#{msg['contact']}"/><br></br>
+	  		<h:outputText value="#{msg['create.contact.help']}"/><br></br>
+		</h:outputLink><br></br>
+  		<hr></hr>
+  		<h:outputLink value="createAddress.jsf" >
+	  		<h:outputText value="#{msg['address']}"/><br></br>
+	  		<h:outputText value="#{msg['create.address.help']}"/><br></br>
+		</h:outputLink><br></br>
+  		<hr></hr>
+  		<h:outputLink value="createPhone.jsf" >
+			<h:outputText value="#{msg['phone']}"/><br></br>
+	  		<h:outputText value="#{msg['create.phone.help']}"/><br></br>
+		</h:outputLink><br></br>
+  		<hr></hr>
+  		<h:outputLink value="createGroup.jsf" >
+	  		<h:outputText value="#{msg['group']}"/><br></br>
+	  		<h:outputText value="#{msg['create.group.help']}"/><br></br>
+		</h:outputLink><br></br>
+  		<hr></hr>
+</h:body>
+</html>

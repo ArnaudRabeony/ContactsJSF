@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+<h:body>
+<ui:include src="header.xhtml"/>
+<div align="center">
+	<fieldset>
+	<legend><h:outputText value="#{msg['login.title']}"/></legend>
+	<h:form>
+	 	<h:outputText value="#{msg['login.name']}"/><h:inputText value="#{loginMd.nom}"/><br/>
+	 	<h:outputText value="#{msg['login.password']}"/><h:inputText value="#{loginMd.password}"/><br/>
+	  <h:commandButton value="#{msg['login.connection']}" action="#{loginMd.checkLogin}"/>
+	</h:form>
+	</fieldset>
+</div>
+</h:body>
+</html>
