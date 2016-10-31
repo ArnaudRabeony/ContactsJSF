@@ -22,5 +22,28 @@
   		<h:outputLink value="searchContact.jsf" >
 	  		<h:outputText value="#{msg['search.contact.title']}"/>
 		</h:outputLink><br></br>
+		<hr/>
+		
+		<h:dataTable value="#{contactManagerMd.liste}" var="c">
+				<h:column>
+    				<f:facet name="header">ID</f:facet>
+    				#{c.id}
+    			</h:column>
+    			
+    			<h:column>
+    				<f:facet name="header"><h:outputText value="#{msg['create.contact.placeholder.lastname']}"/></f:facet>
+    				#{c.nom}
+    			</h:column>
+
+    			<h:column>
+    				<f:facet name="header"><h:outputText value="#{msg['create.contact.placeholder.firstname']}"/>e</f:facet>
+    				#{c.prenom}
+    			</h:column>
+
+    			<h:column>
+    				<f:facet name="header"><h:outputText value="#{msg['create.contact.placeholder.email']}"/></f:facet>
+    				#{c.email}
+    			</h:column>
+    		</h:dataTable>
 </h:body>
 </html>

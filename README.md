@@ -1,7 +1,8 @@
 # ContactsStruts
 
 ## TODO
-* * Création
+* JDBC
+* Création
 * Suppression
 * Modification
 * Affichage index + cartes

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -7,14 +6,32 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
       
+<!-- <h:head>
+<h:outputStylesheet library="css" name="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  />
+<h:outputStylesheet library="css" name="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css"  />
+<h:outputStylesheet library="css" name="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"  />
+<h:outputStylesheet library="css" name="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"  />
+</h:head>  -->   
 <h:body>
 
-<h:form>
-Language :
-		<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
-			valueChangeListener="#{language.countryLocaleCodeChanged}">
-   			<f:selectItems value="#{language.countriesInMap}" />
-   		</h:selectOneMenu>
-</h:form>
+<!-- <nav class="navbar navbar-dark navbar-fixed-top scrolling-navbar mdb-gradient top-nav-collapse"> -->
+<!--       <div class="container"> -->
+<!--       	<span class="navbar-brand" style="color:azure;cursor:default;">Gestionnaire de contacts</span> -->
+<!--               Navbar icons -->
+<!--               <ul class="nav navbar-nav nav-flex-icons"> -->
+<!-- 				<li class="nav-item"> -->
+				<h:form>
+					<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+						valueChangeListener="#{language.countryLocaleCodeChanged}">
+			   			<f:selectItems value="#{language.countriesInMap}" />
+			   		</h:selectOneMenu>
+				</h:form>
+<!--            		</li> -->
+<!--                   <li class="nav-item"> -->
+<!--                   	<button id="logout" class="btn btn-sm btn-default"><h:outputText value="#{msg['logout']}"/></button> -->
+<!--                   </li> -->
+<!--               </ul> -->
+<!--       </div> -->
+<!--   </nav> -->
 </h:body>
 </html>
