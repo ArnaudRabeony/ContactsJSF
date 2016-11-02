@@ -52,6 +52,12 @@ public class CreateContactMd
 		else if(cs.contactExists(nom, prenom))
 			context.addMessage(null, new FacesMessage(contactExists));
 		
-		return context.getMessageList().size()<0 ? null : "welcome";
+		if(context.getMessageList().size()>0)
+			return null;
+		else
+		{
+			cs.createContact(nom, prenom, email);
+			return "welcome";
+		}
 	}
 }

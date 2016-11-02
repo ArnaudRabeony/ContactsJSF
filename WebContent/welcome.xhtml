@@ -6,7 +6,12 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <h:body>
 <ui:include src="header.xhtml"/>
-
+<h:form>
+		<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+		valueChangeListener="#{language.countryLocaleCodeChanged}">
+  			<f:selectItems value="#{language.countriesInMap}" />
+  		</h:selectOneMenu>
+</h:form>	
   		<h:outputLink value="create.jsf" >
 	  		<h:outputText value="#{msg['create']}"/>
 		</h:outputLink><br></br>

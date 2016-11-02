@@ -10,11 +10,21 @@
 <div align="center">
 	<fieldset>
 	<legend><h:outputText value="#{msg['login.title']}"/></legend>
-	<h:form>
-	 	<h:outputText value="#{msg['login.name']}"/><h:inputText value="#{loginMd.nom}"/><br/>
-	 	<h:outputText value="#{msg['login.password']}"/><h:inputText value="#{loginMd.password}"/><br/>
-	  <h:commandButton value="#{msg['login.connection']}" action="#{loginMd.checkLogin}"/>
-	</h:form>
+	<div class="row">
+		<div class="col s6 center-align">
+			<h:form>
+				<span class="col s8">
+			 		<h:outputText value="#{msg['login.name']}"/><h:inputText value="#{loginMd.nom}"/>
+			 	</span><br/>
+			 	<span class="col s8">
+				 	<h:outputText value="#{msg['login.password']}"/><h:inputText value="#{loginMd.password}"/><br/>
+			 	</span><br/>
+			 	<span class="col s8">
+	           		<h:commandButton value="#{msg['login.connection']}" action="#{loginMd.checkLogin}" class="waves-effect waves-light btn"/>
+			 	</span><br/>
+			</h:form>
+		</div>
+	</div>
 	</fieldset>
 </div>
 </h:body>

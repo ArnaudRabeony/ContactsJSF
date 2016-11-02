@@ -1,24 +1,18 @@
 # ContactsStruts
 
 ## TODO
-* JDBC
-* Création
-* Suppression
 * Modification
 * Affichage index + cartes
-* messages français
-* messages anglais
-* Changer BD : Contact->Adresse (assoc unidirectionnelle)
-* Modifier adresse d'un contact : liste déroulante adresses (update contact)
-* Suppression via checkboxes
-* jstl
-* Session
 
 ### PRB
+* select (materialized)
+* delete format => owner:phoneNumber / groupName - x members 
 
 ## DONE 
 * Structure
-
+* Création
+* Suppression
+* Materialized (css import)
 
 
 

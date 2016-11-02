@@ -7,6 +7,14 @@
       >
       
 <h:body>
-Formulaire suppr contact
+<ui:include src="header.xhtml"/>
+<h:outputText value="#{msg['delete.contact.title']}"/>
+<h:form>
+    <input type="hidden" name="type" value="contact" />
+	<h:selectManyCheckbox value="#{deletionManagerMd.ids}">
+	    <f:selectItems value="#{listsManager.contacts}" var="c" itemLabel="#{c.nom} #{c.prenom}" itemValue="#{c.id}"/>
+	</h:selectManyCheckbox>
+	<h:commandButton value="#{msg['delete']}" action="#{deletionManagerMd.delete}" class="waves-effect waves-light btn"/>
+</h:form>
 </h:body>
 </html>

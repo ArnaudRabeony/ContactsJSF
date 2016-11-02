@@ -7,6 +7,19 @@
       >
       
 <h:body>
-Formulaire creation tel
+<ui:include src="header.xhtml"/>
+<h:outputText value="#{msg['create.phone.title']}"/>
+	<h:form>
+	 	<h:outputText value="#{msg['associated.contact']}"/>
+	 	<h:selectOneMenu value="#{createPhoneMd.contactId}">
+		    <f:selectItems value="#{listsManager.contacts}" var="c" itemLabel="#{c.nom} #{c.prenom}" itemValue="#{c.id}" />
+		</h:selectOneMenu><br></br>
+	 	<h:outputText value="#{msg['create.phone.placeholder.num']}"/><h:inputText value="#{createPhoneMd.num}"/><br/>
+		<h:selectOneRadio value="#{createPhoneMd.type}">
+		   	<f:selectItem itemValue="pro" itemLabel="#{msg['create.phone.placeholder.type.pro']}"/>
+		   	<f:selectItem itemValue="perso" itemLabel="#{msg['create.phone.placeholder.type.perso']}"/>
+		</h:selectOneRadio>
+	  	<h:commandButton value="#{msg['create']}" action="#{createPhoneMd.checkCreation}" class="waves-effect waves-light btn"/>
+	</h:form>
 </h:body>
 </html>

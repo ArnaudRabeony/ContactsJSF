@@ -8,6 +8,15 @@
       >
       
 <h:body>
-Formulaire creation adresse
+<ui:include src="header.xhtml"/>
+<h:outputText value="#{msg['create.address.title']}"/>
+	<h:form>
+	 	<h:outputText value="#{msg['create.address.placeholder.num']}"/><h:inputText value="#{createAddressMd.num}"/><br/>
+	 	<h:outputText value="#{msg['create.address.placeholder.street']}"/><h:inputText value="#{createAddressMd.street}"/><br/>
+	 	<h:outputText value="#{msg['create.address.placeholder.city']}"/><h:inputText value="#{createAddressMd.city}"/><br/>
+	 	<h:outputText value="#{msg['create.address.placeholder.code']}"/><h:inputText value="#{createAddressMd.code}"/><br/>
+	 	<h:outputText value="#{msg['create.address.placeholder.country']}"/><h:inputText value="#{createAddressMd.country}"/><br/>
+	  	<h:commandButton value="#{msg['create']}" action="#{createAddressMd.checkCreation}" class="waves-effect waves-light btn"/>
+	</h:form>
 </h:body>
 </html>

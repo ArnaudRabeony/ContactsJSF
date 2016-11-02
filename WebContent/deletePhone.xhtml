@@ -7,6 +7,14 @@
       >
       
 <h:body>
-Formulaire suppr tel
+<ui:include src="header.xhtml"/>
+<h:outputText value="#{msg['delete.phone.title']}"/>
+<h:form>
+	<h:inputHidden value="phone" id="type" />
+	<h:selectManyCheckbox value="#{deletionManagerMd.ids}">
+	    <f:selectItems value="#{listsManager.phones}" var="p" itemLabel="#{p.number}" itemValue="#{p.id}"/>
+	</h:selectManyCheckbox>
+	<h:commandButton value="#{msg['delete']}" action="#{deletionManagerMd.delete}" class="waves-effect waves-light btn"/>
+</h:form>
 </h:body>
 </html>

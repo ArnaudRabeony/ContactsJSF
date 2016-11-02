@@ -7,6 +7,14 @@
       >
       
 <h:body>
-Formulaire suppr groupe
+<ui:include src="header.xhtml"/>
+<h:outputText value="#{msg['delete.group.title']}"/>
+<h:form>
+	<h:inputHidden value="group" id="type" />
+	<h:selectManyCheckbox value="#{deletionManagerMd.ids}">
+	    <f:selectItems value="#{listsManager.groupes}" var="g" itemLabel="#{g.nom}" itemValue="#{g.id}"/>
+	</h:selectManyCheckbox>
+	<h:commandButton value="#{msg['delete']}" action="#{deletionManagerMd.delete}" class="waves-effect waves-light btn"/>
+</h:form>
 </h:body>
 </html>
