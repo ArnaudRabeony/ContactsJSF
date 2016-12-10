@@ -1,0 +1,46 @@
+body
+{
+	background-color:ghostwhite;
+	overflow:hidden;
+}
+
+a.carousel-item
+{
+	color:grey;
+}
+
+.collapsible-header,.collapsible
+{
+    font-weight: 300;
+    color: grey;
+}
+
+.collapsible-body
+{
+	background-color:white;
+}
+
+.cardBody
+{
+    padding:10px !important;
+}
+
+.carouselContainer
+{
+	width:100%;
+}
+
+.carousel
+{
+	height:500px !important;
+}
+
+#contactContainer
+{
+	height:900px;
+	display:none;
+	border-right:.8px solid grey;
+	background-color:white;
+	box-shadow:1px 2px 20px 1px;
+}
+

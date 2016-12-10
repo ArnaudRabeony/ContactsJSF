@@ -347,7 +347,7 @@ public class AdresseDAO
 		try
 		{
 			con = this.getConnection();
-			String req = "select * from adresse where rue=? and ville=? and codep=? and pays=?";
+			String req = "select * from adresse where rue=? and ville=? and codePostal=? and pays=?";
 	
 			ps = con.prepareStatement(req);
 			

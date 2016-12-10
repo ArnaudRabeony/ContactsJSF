@@ -86,4 +86,9 @@ public class ContactService {
 		
 		return contains;
 	}
+
+	public boolean mailExists(String email) 
+	{
+		return cd.mailExists(email);
+	}
 }

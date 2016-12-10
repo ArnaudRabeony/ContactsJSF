@@ -1,24 +1,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<h:html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
-      
 <h:head>
  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="main.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"/>
 
   <!-- Compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  
+
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+    
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>	
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>	
+    
+<!--     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.silver.min.css" /> -->
+    <script src="http://kendo.cdn.telerik.com/2016.3.1028/js/kendo.all.min.js"></script>	
+    <script>
+    $(function()
+    		{
+// 		    	$("#grid").kendoGrid({
+// 		            height: 550,
+// 		            sortable: true
+// 		        });
+
+    	$('#grid').DataTable( {
+    	    scrollY: 180,
+    	    paging: false
+    	});
+    	
+    	$(".carousel").carousel();
+    	
+    		});
+    </script>	
+    
+    
 </h:head>  
 <h:body>
-<h:form>
-	<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
-		valueChangeListener="#{language.countryLocaleCodeChanged}">
-  			<f:selectItems value="#{language.countriesInMap}" />
-  		</h:selectOneMenu>
-</h:form>				
+<div class="row">
+	<div id='menuPanel' class="col-md-1 col-sm-1" style="background-color:red;">
+	</div>
+</div>
+
+<div class="card col s3 m3">
+	<h:form>
+			<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+			valueChangeListener="#{language.countryLocaleCodeChanged}">
+	  			<f:selectItems value="#{language.countriesInMap}" />
+	  		</h:selectOneMenu>
+	</h:form>				
+</div>
 </h:body>
-</html>
+</h:html>

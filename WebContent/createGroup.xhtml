@@ -11,11 +11,6 @@
 <h:outputText value="#{msg['create.group.title']}"/>
 <h:form>
 	 	<h:outputText value="#{msg['group']}"/><h:inputText value="#{createGroupMd.nom}"/><br/>
-	 	<h:outputText value="#{msg['create.group.question']}"/>
-		<h:selectOneRadio value="#{createGroupMd.reponse}">
-		   	<f:selectItem itemValue="yes" itemLabel="#{msg['yes']}"/>
-		   	<f:selectItem itemValue="no" itemLabel="#{msg['no']}"/>
-		</h:selectOneRadio>
 		<h:outputText value="#{msg['create.group.select']}"/>
 		<h:selectManyCheckbox value="#{createGroupMd.ids}">
 		    <f:selectItems value="#{listsManager.contacts}" var="c" itemLabel="#{c.nom} #{c.prenom}" itemValue="#{c.id}"/>

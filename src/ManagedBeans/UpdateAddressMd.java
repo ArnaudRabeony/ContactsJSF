@@ -9,13 +9,21 @@ import javax.faces.context.FacesContext;
 import ServiceEntities.AdresseService;
 
 @ManagedBean
-public class CreateAddressMd 
+public class UpdateAddressMd 
 {
+	private int id;
 	private String num;
 	private String street;
 	private String city;
 	private String code;
 	private String country;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNum() {
 		return num;
 	}
@@ -47,10 +55,13 @@ public class CreateAddressMd
 		this.country = country;
 	}
 	
-	public String checkCreation()
+	public String checkUpdate()
 	{
 		FacesContext context = FacesContext.getCurrentInstance();
 		ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
+		
+		int id = this.getId();
+		
 		String num = this.getNum();
 		String street = this.getStreet();
 		String city = this.getCity();
@@ -62,7 +73,7 @@ public class CreateAddressMd
 		
 		AdresseService as = new AdresseService();
 		
-		if(num.isEmpty() || street.isEmpty() || city.isEmpty() || code.isEmpty() || country.isEmpty())
+		if(id==-1 || num.isEmpty() || street.isEmpty() || city.isEmpty() || code.isEmpty() || country.isEmpty())
 			context.addMessage(null, new FacesMessage(missingFields));
 		else if(as.addressExists(num+" "+street, city, code, country))
 			context.addMessage(null, new FacesMessage(addressExists));
@@ -71,7 +82,7 @@ public class CreateAddressMd
 			return null;
 		else
 		{
-			as.createAdresse(num+" "+street, city, code, country);
+			as.updateAdresse(id,num+" "+street, city, code, country);
 			return "welcome";
 		}
 	}

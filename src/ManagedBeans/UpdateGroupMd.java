@@ -6,17 +6,23 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import Models.Groupe;
+import Models.Contact;
 import ServiceEntities.ContactService;
 import ServiceEntities.GroupeService;
 import ServiceEntities.MembreService;
 
 @ManagedBean
-public class CreateGroupMd 
-{
+public class UpdateGroupMd {
+
+	private int id;
 	private String nom;
 	private String[] ids;
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNom() {
 		return nom;
 	}
@@ -30,19 +36,20 @@ public class CreateGroupMd
 		this.ids = ids;
 	}
 	
-	public String checkCreation()
+	public String checkUpdate()
 	{
 		FacesContext context = FacesContext.getCurrentInstance();
 		ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
 		String nom = this.getNom();
 		String[] ids = this.getIds();
+		int id = this.getId();
 		
 		String missingFields = bundle.getString("form.missingField");
 		String groupExists = bundle.getString("form.group.alreadyExists");
 		
 		GroupeService gs = new GroupeService();
 		
-		if(nom.isEmpty())
+		if(id==-1 || nom.isEmpty())
 			context.addMessage(null, new FacesMessage(missingFields));
 		else if(gs.groupExists(nom))
 			context.addMessage(null, new FacesMessage(groupExists));
@@ -51,18 +58,29 @@ public class CreateGroupMd
 			return null;
 		else
 		{
-			Groupe g = gs.createGroupe(nom);
-
+			gs.updateGroupe(id, nom);
+			
+			ContactService cs = new ContactService();
 			MembreService ms = new MembreService();
-
-			if(ids!=null && ids.length!=0)
+			
+			if(ids!=null)
 			{
-				int idGroupe = gs.getGroupIdByName(g.getNom());
+				for(Contact c : cs.getContacts())
+					if(ms.getGroupIdByContactId(c.getId()).contains(id))
+						ms.removeContactFromGroup(c.getId(), id);
 				
-				for(int i=0;i<ids.length;i++)
-					ms.addContactToGroup(Integer.valueOf(ids[i]), idGroupe);
+				for(String newContactId : ids)
+				{
+					Contact c = cs.getContactById(Integer.valueOf(newContactId));
+					ms.addContactToGroup(c.getId(), id);
+				}
 			}
-
+			else
+			{
+				for(Contact c : cs.getContacts())
+					if(ms.getGroupIdByContactId(c.getId()).contains(id))
+						ms.removeContactFromGroup(c.getId(), id);
+			}
 			return "welcome";
 		}
 	}

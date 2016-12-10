@@ -1,19 +1,18 @@
 # ContactsStruts
 
 ## TODO
-* Modification
+* Affichage général (groupes, téléphones)
 * Affichage index + cartes
+* Ajax
 
 ### PRB
 * select (materialized)
-* delete format => owner:phoneNumber / groupName - x members 
 
 ## DONE 
 * Structure
 * Création
 * Suppression
 * Materialized (css import)
-
-
-
+* delete format => owner:phoneNumber / groupName - x members 
+* Modifications
 

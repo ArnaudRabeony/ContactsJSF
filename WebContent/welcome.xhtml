@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -5,50 +6,59 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:body>
-<ui:include src="header.xhtml"/>
-<h:form>
-		<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
-		valueChangeListener="#{language.countryLocaleCodeChanged}">
-  			<f:selectItems value="#{language.countriesInMap}" />
-  		</h:selectOneMenu>
-</h:form>	
-  		<h:outputLink value="create.jsf" >
-	  		<h:outputText value="#{msg['create']}"/>
-		</h:outputLink><br></br>
-  		<hr></hr>
-  		<h:outputLink value="update.jsf" >
-	  		<h:outputText value="#{msg['update']}"/>
-		</h:outputLink><br></br>
-  		<hr></hr>
-  		<h:outputLink value="delete.jsf" >
-	  		<h:outputText value="#{msg['delete']}"/>
-		</h:outputLink><br></br>
-  		<hr></hr>
-  		<h:outputLink value="searchContact.jsf" >
-	  		<h:outputText value="#{msg['search.contact.title']}"/>
-		</h:outputLink><br></br>
-		<hr/>
-		
-		<h:dataTable value="#{contactManagerMd.liste}" var="c">
-				<h:column>
-    				<f:facet name="header">ID</f:facet>
-    				#{c.id}
-    			</h:column>
-    			
-    			<h:column>
-    				<f:facet name="header"><h:outputText value="#{msg['create.contact.placeholder.lastname']}"/></f:facet>
-    				#{c.nom}
-    			</h:column>
 
-    			<h:column>
-    				<f:facet name="header"><h:outputText value="#{msg['create.contact.placeholder.firstname']}"/>e</f:facet>
-    				#{c.prenom}
-    			</h:column>
+<ui:insert name="header">
+		<ui:include src="header.xhtml"/>
+</ui:insert>
 
-    			<h:column>
-    				<f:facet name="header"><h:outputText value="#{msg['create.contact.placeholder.email']}"/></f:facet>
-    				#{c.email}
-    			</h:column>
-    		</h:dataTable>
+<div id="rightPanel" class="col-md-11 col-sm-11">
+ <h:outputLink value="TEST AJAX RENDER" id="testAjax"/>
+          <h:outputLink value="create.jsf" >
+              <h:outputText value="#{msg['create']}"/>
+        </h:outputLink><br></br>
+          <hr></hr>
+          <h:outputLink value="update.jsf" >
+              <h:outputText value="#{msg['update']}"/>
+        </h:outputLink><br></br>
+          <hr></hr>
+          <h:outputLink value="delete.jsf" >
+              <h:outputText value="#{msg['delete']}"/>
+        </h:outputLink><br></br>
+          <hr></hr>
+          <h:outputLink value="searchContact.jsf" >
+              <h:outputText value="#{msg['search.contact.title']}"/>
+        </h:outputLink><br></br>
+        <hr/>
+
+		<table id="grid">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th><h:outputText value="#{msg['create.contact.placeholder.lastname']}"/></th>
+                    <th><h:outputText value="#{msg['create.contact.placeholder.firstname']}"/></th>
+                    <th><h:outputText value="#{msg['create.contact.placeholder.email']}"/></th>
+                    <th><h:outputText value="#{msg['delete']}"/></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ui:repeat var="c" value="#{listsManager.contacts}" varStatus="status">
+                    <h:form id="contacts">
+                        <tr>
+                            <td><h:outputText value="#{c.id}"/></td>
+                            <td><h:outputText value="#{c.nom}"/></td>
+                            <td><h:outputText value="#{c.prenom}"/></td>
+                            <td><h:outputText value="#{c.email}"/></td>
+                            <td><h:commandButton value="#{msg['delete']}" action="#{deletionsManagerMd.delete}" class="waves-effect waves-light btn">
+                            	<f:param name="id" value="#{c.id}" />
+                            	<f:param name="type" value="contact" />
+                            	<f:param name="from" value="welcomePage" />
+                            	<f:ajax render="@all" event="click" listener="#{deletionsManagerMd.delete}"/>
+                            </h:commandButton></td>
+                        </tr>
+                    </h:form>
+                </ui:repeat>
+            </tbody>
+        </table>
+</div>
 </h:body>
 </html>

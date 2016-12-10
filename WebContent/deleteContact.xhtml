@@ -11,10 +11,10 @@
 <h:outputText value="#{msg['delete.contact.title']}"/>
 <h:form>
     <input type="hidden" name="type" value="contact" />
-	<h:selectManyCheckbox value="#{deletionManagerMd.ids}">
+	<h:selectManyCheckbox value="#{deletionsManagerMd.ids}">
 	    <f:selectItems value="#{listsManager.contacts}" var="c" itemLabel="#{c.nom} #{c.prenom}" itemValue="#{c.id}"/>
 	</h:selectManyCheckbox>
-	<h:commandButton value="#{msg['delete']}" action="#{deletionManagerMd.delete}" class="waves-effect waves-light btn"/>
+	<h:commandButton value="#{msg['delete']}" action="#{deletionsManagerMd.delete}" class="waves-effect waves-light btn"/>
 </h:form>
 </h:body>
 </html>

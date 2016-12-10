@@ -5,8 +5,18 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
-      
 <h:body>
-Formulaire maj contact
+
+<h:form>
+	<h:selectOneMenu value="#{updateContactMd.id}">
+		<f:selectItem itemLabel="-" itemValue="-1"/>
+	    <f:selectItems value="#{listsManager.contacts}" var="c" itemLabel="#{c.nom} #{c.prenom}" itemValue="#{c.id}"/>
+	</h:selectOneMenu><br></br>
+	
+	<h:outputText value="#{msg['create.contact.placeholder.lastname']}"/><h:inputText value="#{updateContactMd.nom}"/><br/>
+ 	<h:outputText value="#{msg['create.contact.placeholder.firstname']}"/><h:inputText value="#{updateContactMd.prenom}"/><br/>
+ 	<h:outputText value="#{msg['create.contact.placeholder.email']}"/><h:inputText value="#{updateContactMd.email}"/><br/>
+  	<h:commandButton value="#{msg['update']}" action="#{updateContactMd.checkUpdate}" class="waves-effect waves-light btn"/>
+</h:form>
 </h:body>
 </html>

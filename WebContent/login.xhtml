@@ -5,27 +5,27 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
-<h:body>
+<h:body style="background-color:aliceblue;">
 <ui:include src="header.xhtml"/>
-<div align="center">
-	<fieldset>
-	<legend><h:outputText value="#{msg['login.title']}"/></legend>
-	<div class="row">
-		<div class="col s6 center-align">
+<div class="container">
+	<div class="row" align="center">
+		<div class="card col s6 offset-s3" style="height:300px;padding:10px">
+		<h:outputText value="#{msg['login.title']}"/>
+		<div class="card-content">
 			<h:form>
-				<span class="col s8">
+				<span class="col s12 m12">
 			 		<h:outputText value="#{msg['login.name']}"/><h:inputText value="#{loginMd.nom}"/>
 			 	</span><br/>
-			 	<span class="col s8">
+			 	<span class="col s12 m12">
 				 	<h:outputText value="#{msg['login.password']}"/><h:inputText value="#{loginMd.password}"/><br/>
 			 	</span><br/>
-			 	<span class="col s8">
-	           		<h:commandButton value="#{msg['login.connection']}" action="#{loginMd.checkLogin}" class="waves-effect waves-light btn"/>
+			 	<span class="col s12 m12">
+	           		<h:commandButton value="#{msg['login.connection']}" action="#{loginMd.checkLogin}" styleClass="waves-effect waves-light btn"/>
 			 	</span><br/>
 			</h:form>
 		</div>
+		</div>
 	</div>
-	</fieldset>
 </div>
 </h:body>
 </html>

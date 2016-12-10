@@ -5,8 +5,21 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
-      
 <h:body>
-Formulaire maj groupe
+
+<h:form>
+
+	<h:selectOneMenu value="#{updateGroupMd.id}">
+		<f:selectItem itemLabel="-" itemValue="-1"/>
+	    <f:selectItems value="#{listsManager.groupes}" var="g" itemLabel="#{g.nom}" itemValue="#{g.id}"/>
+	</h:selectOneMenu><br></br>
+	
+	 	<h:outputText value="#{msg['group']}"/><h:inputText value="#{updateGroupMd.nom}"/><br/>
+		<h:outputText value="#{msg['create.group.select']}"/>
+		<h:selectManyCheckbox value="#{updateGroupMd.ids}">
+		    <f:selectItems value="#{listsManager.contacts}" var="c" itemLabel="#{c.nom} #{c.prenom}" itemValue="#{c.id}"/>
+		</h:selectManyCheckbox>
+ 	<h:commandButton value="#{msg['update']}" action="#{updateGroupMd.checkUpdate}" class="waves-effect waves-light btn"/>
+</h:form>
 </h:body>
 </html>

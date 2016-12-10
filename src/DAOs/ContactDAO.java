@@ -585,4 +585,43 @@ public class ContactDAO {
 
 		return id;
 	}
+
+	public boolean mailExists(String email) 
+	{
+		boolean exists = false;
+		try
+		{
+			con = this.getConnection();
+			String req = "select * from contact where email=?";
+	
+			ps = con.prepareStatement(req);
+			
+			ps.setString(1, email);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next())
+				exists=true;
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			try {
+				if(ps != null) ps.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
+
+		return exists;
+	}
 }

@@ -7,6 +7,19 @@
       >
       
 <h:body>
-Formulaire maj tel
+
+<h:form>
+	<h:selectOneMenu value="#{updatePhoneMd.id}">
+		<f:selectItem itemLabel="-" itemValue="-1"/>
+	    <f:selectItems value="#{listsManager.phones}" var="p" itemLabel="#{p.phoneKind}, #{p.number}" itemValue="#{p.id}"/>
+	</h:selectOneMenu><br></br>
+
+	 	<h:outputText value="#{msg['create.phone.placeholder.num']}"/><h:inputText value="#{updatePhoneMd.num}"/><br/>
+		<h:selectOneRadio value="#{updatePhoneMd.type}">
+		   	<f:selectItem itemValue="pro" itemLabel="#{msg['create.phone.placeholder.type.pro']}"/>
+		   	<f:selectItem itemValue="perso" itemLabel="#{msg['create.phone.placeholder.type.perso']}"/>
+		</h:selectOneRadio>
+	 <h:commandButton value="#{msg['update']}" action="#{updatePhoneMd.checkUpdate}" class="waves-effect waves-light btn"/>
+</h:form>
 </h:body>
 </html>

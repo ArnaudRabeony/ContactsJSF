@@ -10,12 +10,14 @@
 <h:body>
 <ui:include src="header.xhtml"/>
 <h:outputText value="#{msg['delete.address.title']}"/>
-<h:form>
-	<h:inputHidden value="address" id="type" />
-	<h:selectManyCheckbox value="#{deletionManagerMd.ids}">
+<div>
+<h:form class="col s4">
+    <input type="hidden" name="type" value="address" />
+	<h:selectManyCheckbox value="#{deletionsManagerMd.ids}">
 	    <f:selectItems value="#{listsManager.addresses}" var="a" itemLabel="#{a.rue}, #{a.ville} (#{a.codePostal})" itemValue="#{a.idAddress}"/>
 	</h:selectManyCheckbox>
-	<h:commandButton value="#{msg['delete']}" action="#{deletionManagerMd.delete}" class="waves-effect waves-light btn"/>
+	<h:commandButton value="#{msg['delete']}" action="#{deletionsManagerMd.delete}" class="waves-effect waves-light btn"/>
 </h:form>
+</div>
 </h:body>
 </html>

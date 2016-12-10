@@ -8,6 +8,20 @@
       >
       
 <h:body>
-Formulaire maj adresse
+
+<h:form>
+	<h:selectOneMenu value="#{updateAddressMd.id}">
+		<f:selectItem itemLabel="-" itemValue="-1"/>
+	    <f:selectItems value="#{listsManager.addresses}" var="a" itemLabel="#{a.rue}, #{a.ville}, #{a.pays}" itemValue="#{a.idAddress}"/>
+	</h:selectOneMenu><br></br>
+	
+	<h:outputText value="#{msg['create.address.placeholder.num']}"/><h:inputText value="#{updateAddressMd.num}"/><br/>
+ 	<h:outputText value="#{msg['create.address.placeholder.street']}"/><h:inputText value="#{updateAddressMd.street}"/><br/>
+ 	<h:outputText value="#{msg['create.address.placeholder.city']}"/><h:inputText value="#{updateAddressMd.city}"/><br/>
+ 	<h:outputText value="#{msg['create.address.placeholder.code']}"/><h:inputText value="#{updateAddressMd.code}"/><br/>
+ 	<h:outputText value="#{msg['create.address.placeholder.country']}"/><h:inputText value="#{updateAddressMd.country}"/><br/>
+ 	<h:commandButton value="#{msg['update']}" action="#{updateAddressMd.checkUpdate}" class="waves-effect waves-light btn"/>
+</h:form>
+
 </h:body>
 </html>
