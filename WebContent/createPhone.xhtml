@@ -7,8 +7,14 @@
       >
       
 <h:body>
-<ui:include src="header.xhtml"/>
-<h:outputText value="#{msg['create.phone.title']}"/>
+<ui:insert name="header">
+		<ui:include src="header.xhtml"/>
+</ui:insert>
+<ui:insert name="nav">
+		<ui:include src="nav.xhtml"/>
+</ui:insert>
+<div class="card cardContainer">
+	<h:outputText value="#{msg['create.phone.title']}"/>
 	<h:form>
 	 	<h:outputText value="#{msg['associated.contact']}"/>
 	 	<h:selectOneMenu value="#{createPhoneMd.contactId}">
@@ -21,5 +27,6 @@
 		</h:selectOneRadio>
 	  	<h:commandButton value="#{msg['create']}" action="#{createPhoneMd.checkCreation}" class="waves-effect waves-light btn"/>
 	</h:form>
+</div>
 </h:body>
 </html>

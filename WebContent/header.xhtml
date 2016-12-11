@@ -9,15 +9,16 @@
  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="main.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-  
 
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.common.min.css" />
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.material.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /> -->
     
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>	
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>	
@@ -32,31 +33,42 @@
 // 		            sortable: true
 // 		        });
 
-    	$('#grid').DataTable( {
-    	    scrollY: 180,
+    	$('select').material_select();
+
+    	$('#tableDisplayContainer table').DataTable( {
+    	    scrollY: 250,
     	    paging: false
     	});
     	
     	$(".carousel").carousel();
     	
+	    $("body").on("click",".contactInfo",function()
+    		{
+        		$("#carouselContainer").removeClass("l12").addClass("l9");
+        		var contact = $(this).closest(".collapsible-body").prev().text();
+        		$("#contactContainer #name").text(contact);
+    			$("#contactContainer").fadeIn("slow");
     		});
+
+//         	$("body").on("click","#supprimerGroupe",function(e)
+//     		{
+//         		e.preventDefault();
+//         		e.stopPropagation();
+//         		alert("click");
+//     		});
+        	
+    	$("#changeView").click(function()
+		{
+//     		alert("click");
+			$("#tableDisplayContainer, #groupDisplay").toggle();
+		});
+    	
+    	
+      });
     </script>	
     
     
 </h:head>  
 <h:body>
-<div class="row">
-	<div id='menuPanel' class="col-md-1 col-sm-1" style="background-color:red;">
-	</div>
-</div>
-
-<div class="card col s3 m3">
-	<h:form>
-			<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
-			valueChangeListener="#{language.countryLocaleCodeChanged}">
-	  			<f:selectItems value="#{language.countriesInMap}" />
-	  		</h:selectOneMenu>
-	</h:form>				
-</div>
 </h:body>
 </h:html>

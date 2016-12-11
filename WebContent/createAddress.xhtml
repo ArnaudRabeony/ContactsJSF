@@ -8,7 +8,13 @@
       >
       
 <h:body>
-<ui:include src="header.xhtml"/>
+<ui:insert name="header">
+		<ui:include src="header.xhtml"/>
+</ui:insert>
+<ui:insert name="nav">
+		<ui:include src="nav.xhtml"/>
+</ui:insert>
+<div class="card cardContainer">
 <h:outputText value="#{msg['create.address.title']}"/>
 	<h:form>
 	 	<h:outputText value="#{msg['create.address.placeholder.num']}"/><h:inputText value="#{createAddressMd.num}"/><br/>
@@ -18,5 +24,6 @@
 	 	<h:outputText value="#{msg['create.address.placeholder.country']}"/><h:inputText value="#{createAddressMd.country}"/><br/>
 	  	<h:commandButton value="#{msg['create']}" action="#{createAddressMd.checkCreation}" class="waves-effect waves-light btn"/>
 	</h:form>
+</div>
 </h:body>
 </html>

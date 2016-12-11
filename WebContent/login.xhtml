@@ -6,7 +6,9 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
 <h:body style="background-color:aliceblue;">
-<ui:include src="header.xhtml"/>
+<ui:insert name="header">
+		<ui:include src="header.xhtml"/>
+</ui:insert>
 <div class="container">
 	<div class="row" align="center">
 		<div class="card col s6 offset-s3" style="height:300px;padding:10px">

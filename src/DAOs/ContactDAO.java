@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import Models.Adresse;
 import Models.Contact;
 import Models.Groupe;
+import Models.Membre;
 import ServiceEntities.GroupeService;
 
 public class ContactDAO {
@@ -623,5 +624,45 @@ public class ContactDAO {
 		}	
 
 		return exists;
+	}
+
+	public ArrayList<Membre> getMembres() 
+	{
+		ArrayList<Membre> list = new ArrayList<Membre>();
+		
+		try
+		{
+			con = this.getConnection();
+			String req = "select * from membre";
+			ps = con.prepareStatement(req);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				int idGroupe = rs.getInt("idGroupe");
+				int idContact = rs.getInt("idContact");
+				list.add(new Membre(idGroupe,idContact));
+			}
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			try {
+				if(ps != null) ps.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
+		
+		return list;
 	}
 }

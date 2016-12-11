@@ -1,36 +1,100 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 <h:body>
 
 <ui:insert name="header">
 		<ui:include src="header.xhtml"/>
 </ui:insert>
+<ui:insert name="nav">
+		<ui:include src="nav.xhtml"/>
+</ui:insert>
 
-<div id="rightPanel" class="col-md-11 col-sm-11">
- <h:outputLink value="TEST AJAX RENDER" id="testAjax"/>
-          <h:outputLink value="create.jsf" >
-              <h:outputText value="#{msg['create']}"/>
-        </h:outputLink><br></br>
-          <hr></hr>
-          <h:outputLink value="update.jsf" >
-              <h:outputText value="#{msg['update']}"/>
-        </h:outputLink><br></br>
-          <hr></hr>
-          <h:outputLink value="delete.jsf" >
-              <h:outputText value="#{msg['delete']}"/>
-        </h:outputLink><br></br>
-          <hr></hr>
-          <h:outputLink value="searchContact.jsf" >
-              <h:outputText value="#{msg['search.contact.title']}"/>
-        </h:outputLink><br></br>
-        <hr/>
-
-		<table id="grid">
+<div id="groupDisplay">
+	<ul class="collapsible popout" data-collapsible="accordion">
+	    <ui:repeat var="g" value="#{listsManager.groupes}">
+		    <li>
+		      <div class="collapsible-header">
+		      		<i class="material-icons">contacts</i>
+		      		<h:outputText value="#{g.nom} - #{fn:length(g.membres)} membre(s)"/>
+<!-- 		      		<span style="float:right;"> -->
+<!-- 		      			<i class="material-icons" id="supprimerGroupe">contacts</i> -->
+<!-- 		      			<i class="material-icons">contacts</i> -->
+<!-- 		      		</span> -->
+		      </div>
+		      <div class="collapsible-body">
+		          <ul class="collection">
+			          <ui:repeat var="c" value="#{g.membres}">
+					    <li class="collection-item avatar">
+					      <img src="http://lorempixel.com/250/250/business/#{c.id mod 10}" alt="" class="circle"/>
+					      <span class="title"><h:outputText value="#{c.prenom} #{c.nom}"/></span><br/>
+					      <div class="contactInfoContainer row">
+					      	<div class="leftContainer col s4 m4 l4">
+						      	<i class="material-icons">mail</i><h:outputText value="#{c.email}"/><br/>
+					      	</div>
+					      	<div class="middleContainer col s4 m4 l4">
+					      		<ui:repeat var="tel" value="#{c.phones}">
+						        	<i class="material-icons">phone</i><h:outputText value="#{tel.phoneKind} : #{tel.number}"/><br/>
+						        </ui:repeat>
+					      	</div>
+					      	<div class="rightContainer col s4 m4 l4 row">
+	<!-- 					      	<ui:fragment rendered="{not empty c.address}"> -->
+							      	<i class="material-icons col s1 m1 l1">location_on</i>
+							      	<div class="col s9 m9 l9">
+								      	<h:outputText value="#{c.address.rue}"/><br/>
+								      	<h:outputText value="#{c.address.ville}, #{c.address.codePostal}"/><br/>
+								      	<h:outputText value="#{c.address.pays}"/><br/>
+							      	</div>
+	<!-- 						    </ui:fragment> -->
+					      	</div>
+					      </div>
+					    </li>
+			      	  </ui:repeat>
+		      	  </ul>
+		      </div>
+		    </li>
+	    </ui:repeat>
+		    <li>
+		      <div class="collapsible-header"><i class="material-icons">contacts</i><h:outputText value="Pas de groupe - #{fn:length(listsManager.sansGroupe)} membre(s)"/></div>
+		      <div class="collapsible-body">
+		      	 <ul class="collection">
+			          <ui:repeat var="c" value="#{listsManager.sansGroupe}">
+						<li class="collection-item avatar">
+					      <img src="http://lorempixel.com/250/250/business/#{c.id mod 10}" alt="" class="circle"/>
+					      <span class="title"><h:outputText value="#{c.prenom} #{c.nom}"/></span><br/>
+					      <div class="contactInfoContainer row">
+					      	<div class="leftContainer col s4 m4 l4">
+						      	<i class="material-icons">mail</i><h:outputText value="#{c.email}"/><br/>
+					      	</div>
+					      	<div class="middleContainer col s4 m4 l4">
+					      		<ui:repeat var="tel" value="#{c.phones}">
+						        	<i class="material-icons">phone</i><h:outputText value="#{tel.phoneKind} : #{tel.number}"/><br/>
+						        </ui:repeat>
+					      	</div>
+					      	<div class="rightContainer col s4 m4 l4 row">
+	<!-- 					      	<ui:fragment rendered="{not empty c.address}"> -->
+							      	<i class="material-icons col s1 m1 l1">location_on</i>
+							      	<div class="col s9 m9 l9">
+								      	<h:outputText value="#{c.address.rue}"/><br/>
+								      	<h:outputText value="#{c.address.ville}, #{c.address.codePostal}"/><br/>
+								      	<h:outputText value="#{c.address.pays}"/><br/>
+							      	</div>
+	<!-- 						    </ui:fragment> -->
+					      	</div>
+					      </div>
+					    </li>
+			      	  </ui:repeat>
+			     </ul>
+		      </div>
+		    </li>
+	</ul>
+</div>
+<div class="card cardContainer" id="tableDisplayContainer">
+		<table class="highlight responsive-table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -60,5 +124,34 @@
             </tbody>
         </table>
 </div>
+
+<div class="fixed-action-btn horizontal">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">add</i>
+    </a>
+    <ul>
+      <li>
+   		<h:outputLink value="createGroup.jsf" class="btn-floating red">
+      		<i class="material-icons red darken-2">contacts</i>
+     	</h:outputLink>
+	  </li>
+	  <li>
+   		<h:outputLink value="createContact.jsf" class="btn-floating red">
+      		<i class="material-icons blue">account_circle</i>
+     	</h:outputLink>
+	  </li>  
+	  <li>
+   		<h:outputLink value="createAddress.jsf" class="btn-floating red">
+      		<i class="material-icons yellow darken-2">location_on</i>
+     	</h:outputLink>
+	  </li>
+	  <li>
+   		<h:outputLink value="createPhone.jsf" class="btn-floating red">
+      		<i class="material-icons green">phone</i>
+     	</h:outputLink>
+	  </li>  	
+    </ul>
+  </div>
+  
 </h:body>
 </html>

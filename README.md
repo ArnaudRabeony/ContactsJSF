@@ -1,12 +1,13 @@
 # ContactsStruts
 
 ## TODO
-* Affichage général (groupes, téléphones)
+* Groups management (chips)
 * Affichage index + cartes
 * Ajax
 
 ### PRB
 * select (materialized)
+* display address if {not empty c.address}
 
 ## DONE 
 * Structure
@@ -15,4 +16,5 @@
 * Materialized (css import)
 * delete format => owner:phoneNumber / groupName - x members 
 * Modifications
+* Home page
 

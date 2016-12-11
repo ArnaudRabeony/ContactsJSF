@@ -2,11 +2,13 @@ package Models;
 
 import java.util.ArrayList;
 
+import ServiceEntities.ContactService;
+
 public class Groupe 
 {
 	private int id;
 	private String nom;
-	private ArrayList<Contact> contacts;
+	private ArrayList<Contact> membres;
 	
 	public Groupe(String nom) {
 		super();
@@ -32,22 +34,32 @@ public class Groupe
 		this.nom = nom;
 	}
 
-	public ArrayList<Contact> getContacts() {
-		return contacts;
+	public ArrayList<Contact> getMembres() 
+	{
+		ContactService cs = new ContactService();
+		ArrayList<Contact> list = new ArrayList<Contact>();
+		
+		ArrayList<Membre> membres = cs.getMembres();
+		
+		for(Membre m : membres)
+			if(m.getIdGroupe() == this.getId())
+				list.add(cs.getContactById(m.getIdContact()));
+		
+		return list;
 	}
 
-	public void setContacts(ArrayList<Contact> contacts) {
-		this.contacts = contacts;
+	public void setMembres(ArrayList<Contact> contacts) {
+		this.membres = contacts;
 	}
 	
 	public ArrayList<Contact> addContact(Contact contact)
 	{
-		this.contacts.add(contact);
-		return this.contacts;
+		this.membres.add(contact);
+		return this.membres;
 	}
 
 	public void addOwner(Contact contactOwner)
 	{
-		this.contacts.add(contactOwner);
+		this.membres.add(contactOwner);
 	}
 }

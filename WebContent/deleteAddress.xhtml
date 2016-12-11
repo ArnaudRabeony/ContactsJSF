@@ -8,16 +8,23 @@
       >
       
 <h:body>
-<ui:include src="header.xhtml"/>
+<ui:insert name="header">
+		<ui:include src="header.xhtml"/>
+</ui:insert>
+<ui:insert name="nav">
+		<ui:include src="nav.xhtml"/>
+</ui:insert>
+<div class="card cardContainer">
 <h:outputText value="#{msg['delete.address.title']}"/>
-<div>
-<h:form class="col s4">
-    <input type="hidden" name="type" value="address" />
-	<h:selectManyCheckbox value="#{deletionsManagerMd.ids}">
-	    <f:selectItems value="#{listsManager.addresses}" var="a" itemLabel="#{a.rue}, #{a.ville} (#{a.codePostal})" itemValue="#{a.idAddress}"/>
-	</h:selectManyCheckbox>
-	<h:commandButton value="#{msg['delete']}" action="#{deletionsManagerMd.delete}" class="waves-effect waves-light btn"/>
-</h:form>
+	<div>
+	<h:form class="col s4">
+	    <input type="hidden" name="type" value="address" />
+		<h:selectManyCheckbox value="#{deletionsManagerMd.ids}">
+		    <f:selectItems value="#{listsManager.addresses}" var="a" itemLabel="#{a.rue}, #{a.ville} (#{a.codePostal})" itemValue="#{a.idAddress}"/>
+		</h:selectManyCheckbox>
+		<h:commandButton value="#{msg['delete']}" action="#{deletionsManagerMd.delete}" class="waves-effect waves-light btn"/>
+	</h:form>
+	</div>
 </div>
 </h:body>
 </html>

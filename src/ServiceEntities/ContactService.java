@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import DAOs.ContactDAO;
 import Models.Contact;
 import Models.Groupe;
+import Models.Membre;
 
 public class ContactService {
 
@@ -90,5 +91,9 @@ public class ContactService {
 	public boolean mailExists(String email) 
 	{
 		return cd.mailExists(email);
+	}
+
+	public ArrayList<Membre> getMembres() {
+		return cd.getMembres();
 	}
 }

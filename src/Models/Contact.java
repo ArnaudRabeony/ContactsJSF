@@ -2,6 +2,9 @@ package Models;
 
 import java.util.ArrayList;
 
+import ServiceEntities.AdresseService;
+import ServiceEntities.TelephoneService;
+
 public class Contact {
 
 	private int id;
@@ -9,8 +12,9 @@ public class Contact {
 	private String prenom;
 	private String email;
 	
-	private ArrayList<Telephone> profiles;
+	private ArrayList<Telephone> phones;
 	private ArrayList<Groupe> groupesListe;
+	private Adresse address;
 	private int idAdresse;
 	
 	public Contact(int id, String nom, String prenom, String email) {
@@ -46,6 +50,16 @@ public class Contact {
 		this.prenom = prenom;
 		this.email = email;
 		this.idAdresse = idAdresse;
+	}
+
+	public Adresse getAddress() {
+		AdresseService as = new AdresseService();
+		this.setAddress(this.getIdAdresse()!=0 ? as.getAdresseById(this.getIdAdresse()) : null);
+		return address;
+	}
+
+	public void setAddress(Adresse address) {
+		this.address = address;
 	}
 
 	public int getIdAdresse() {
@@ -88,12 +102,14 @@ public class Contact {
 		this.email = email;
 	}
 
-	public ArrayList<Telephone> getProfiles() {
-		return profiles;
+	public ArrayList<Telephone> getPhones() {
+		TelephoneService ts = new TelephoneService();
+		this.setPhones(ts.getTelephonesByContactId(this.getId()));
+		return phones;
 	}
 
-	public void setProfiles(ArrayList<Telephone> telephonesListe) {
-		this.profiles = telephonesListe;
+	public void setPhones(ArrayList<Telephone> telephonesListe) {
+		this.phones = telephonesListe;
 	}
 	
 	public ArrayList<Groupe> getGroupesListe() {
@@ -106,7 +122,7 @@ public class Contact {
 
 	public void addTelephone(Telephone t)
 	{
-		this.profiles.add(t);
+		this.phones.add(t);
 	}
 	
 	public void addGroupe(Groupe g)

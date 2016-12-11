@@ -5,8 +5,12 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:body>
-<ui:include src="header.xhtml"/>
-
+<ui:insert name="header">
+		<ui:include src="header.xhtml"/>
+</ui:insert>
+<ui:insert name="nav">
+		<ui:include src="nav.xhtml"/>
+</ui:insert>
   		<h:outputText value="#{msg['update.title']}"/><br></br>
   		<hr></hr>
   		<hr></hr>

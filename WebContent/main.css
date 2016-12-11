@@ -1,7 +1,7 @@
 body
 {
 	background-color:ghostwhite;
-	overflow:hidden;
+/* 	overflow:hidden; */
 }
 
 a.carousel-item
@@ -44,3 +44,46 @@ a.carousel-item
 	box-shadow:1px 2px 20px 1px;
 }
 
+.circle
+{
+	margin-top: 28px !important;
+}
+
+.contactInfoContainer
+{
+	padding-top:10px;
+	cursor:default;
+}
+
+.contactInfoContainer i
+{
+	position: relative !important;
+    top: 6px !important;
+    margin-right:10px !important;
+}
+
+#changeView
+{
+	cursor:pointer;
+}
+
+.hide-on-med-and-down li:last-of-type, #changeView
+{
+	margin-right:50px;
+}
+
+.cardContainer
+{
+	margin:20px !important;
+	padding:10px !important;
+}
+
+#tableDisplayContainer
+{
+	display:none;
+}
+
+.collection
+{
+	width:100%;
+}

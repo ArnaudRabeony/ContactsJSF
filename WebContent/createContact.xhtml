@@ -7,13 +7,20 @@
       >
       
 <h:body>
-<ui:include src="header.xhtml"/>
-<h:outputText value="#{msg['create.contact.title']}"/>
+<ui:insert name="header">
+		<ui:include src="header.xhtml"/>
+</ui:insert>
+<ui:insert name="nav">
+		<ui:include src="nav.xhtml"/>
+</ui:insert>
+<div class="card cardContainer">
+	<h:outputText value="#{msg['create.contact.title']}"/>
 	<h:form>
 	 	<h:outputText value="#{msg['create.contact.placeholder.lastname']}"/><h:inputText value="#{createContactMd.nom}"/><br/>
 	 	<h:outputText value="#{msg['create.contact.placeholder.firstname']}"/><h:inputText value="#{createContactMd.prenom}"/><br/>
-	 	<h:outputText value="#{msg['create.contact.placeholder.email']}"/><h:inputText value="#{createContactMd.email}"/><br/>
+	 	<h:outputText value="#{msg['create.contact.placeholder.email']}"/><h:inputText type="email" value="#{createContactMd.email}"/><br/>
 	  	<h:commandButton value="#{msg['create']}" action="#{createContactMd.checkCreation}" class="waves-effect waves-light btn"/>
 	</h:form>
+</div>
 </h:body>
 </html>

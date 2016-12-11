@@ -1,18 +1,18 @@
 package ManagedBeans;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import javax.faces.bean.ManagedBean;
 
 import Models.Adresse;
 import Models.Contact;
 import Models.Groupe;
+import Models.Membre;
 import Models.Telephone;
 import ServiceEntities.AdresseService;
 import ServiceEntities.ContactService;
 import ServiceEntities.GroupeService;
+import ServiceEntities.MembreService;
 import ServiceEntities.TelephoneService;
 
 @ManagedBean
@@ -26,6 +26,8 @@ public class ListsManager
 	private ArrayList<Groupe> groupes;
 	private TelephoneService ts = new TelephoneService();
 	private ArrayList<Telephone> phones;
+	private MembreService ms = new MembreService();
+	private ArrayList<Contact> sansGroupe;
 	
 	public ArrayList<Contact> getContacts() {
 		this.setContacts(cs.getContacts());
@@ -54,5 +56,12 @@ public class ListsManager
 	}
 	public void setPhones(ArrayList<Telephone> phones) {
 		this.phones = phones;
+	}
+	public ArrayList<Contact> getSansGroupe() {
+		this.setSansGroupe(ms.getContactsWithoutGroup());
+		return sansGroupe;
+	}
+	public void setSansGroupe(ArrayList<Contact> membres) {
+		this.sansGroupe = membres;
 	}
 }
